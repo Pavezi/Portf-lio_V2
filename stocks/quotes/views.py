@@ -1,14 +1,12 @@
 from django.shortcuts import render
+from django.views import generic
+from .models import Project
 
 # Create your views here.
-def home(request):
-    return render(request, 'home.html',{})
 
-def about(request):
-    return render(request, 'about.html',{})
+class ProjectListView(generic.ListView):
+    model = Project
+    template_name = 'home.html'
+    context_object_name = 'projects'
 
-def project(request):
-    return render(request, 'project.html',{})
-
-def contact(request):
-    return render(request, 'contact.html',{})
+home = ProjectListView.as_view()
